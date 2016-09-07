@@ -84,12 +84,25 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Magic'Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="##hashMap概述
+
+HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
+值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap源码分析">
+<meta property="og:url" content="http://yoursite.com/2016/09/07/HashMap源码分析/index.html">
 <meta property="og:site_name" content="Magic'Blog">
+<meta property="og:description" content="##hashMap概述
+
+HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
+值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections">
+<meta property="og:updated_time" content="2016-09-07T05:08:25.978Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Magic'Blog">
+<meta name="twitter:title" content="HashMap源码分析">
+<meta name="twitter:description" content="##hashMap概述
+
+HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。
+值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections">
 
 
 
@@ -110,9 +123,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/07/HashMap源码分析/"/>
 
-  <title> Magic'Blog </title>
+  <title> HashMap源码分析 | Magic'Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -133,9 +146,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -212,9 +223,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -234,103 +245,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/09/07/java/" itemprop="url">
-                  java
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-07T09:44:02+08:00" content="2016-09-07">
-              2016-09-07
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/07/HashMap源码分析/" itemprop="url">
-                  HashMap源码分析
-                </a>
+                HashMap源码分析
               
             
           </h1>
@@ -370,9 +285,7 @@
       
 
       
-        
-          
-            <p>##hashMap概述</p>
+        <p>##hashMap概述</p>
 <blockquote>
 <p>HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操<br>作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。</p>
 <p>值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections类的静态方法synchronizedMap获得线程安全的HashMap。</p>
@@ -384,16 +297,20 @@
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">	</div><div class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">implements</span> <span class="title">Map</span>.<span class="title">Entry</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;    </div><div class="line">    <span class="keyword">final</span> K key;    </div><div class="line">    V value;    </div><div class="line">    <span class="comment">// 指向下一个节点    </span></div><div class="line">    Entry&lt;K,V&gt; next;    </div><div class="line">    <span class="keyword">final</span> <span class="keyword">int</span> hash;    </div><div class="line">   </div><div class="line">    <span class="comment">// 构造函数。    </span></div><div class="line">    <span class="comment">// 输入参数包括"哈希值(h)", "键(k)", "值(v)", "下一节点(n)"    </span></div><div class="line">    Entry(<span class="keyword">int</span> h, K k, V v, Entry&lt;K,V&gt; n) &#123;    </div><div class="line">        value = v;    </div><div class="line">        next = n;    </div><div class="line">        key = k;    </div><div class="line">        hash = h;    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> K <span class="title">getKey</span><span class="params">()</span> </span>&#123;    </div><div class="line">        <span class="keyword">return</span> key;    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">getValue</span><span class="params">()</span> </span>&#123;    </div><div class="line">        <span class="keyword">return</span> value;    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> V <span class="title">setValue</span><span class="params">(V newValue)</span> </span>&#123;    </div><div class="line">        V oldValue = value;    </div><div class="line">        value = newValue;    </div><div class="line">        <span class="keyword">return</span> oldValue;    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="comment">// 判断两个Entry是否相等    </span></div><div class="line">    <span class="comment">// 若两个Entry的“key”和“value”都相等，则返回true。    </span></div><div class="line">    <span class="comment">// 否则，返回false    </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;    </div><div class="line">        <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> Map.Entry))    </div><div class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;    </div><div class="line">        Map.Entry e = (Map.Entry)o;    </div><div class="line">        Object k1 = getKey();    </div><div class="line">        Object k2 = e.getKey();    </div><div class="line">        <span class="keyword">if</span> (k1 == k2 || (k1 != <span class="keyword">null</span> &amp;&amp; k1.equals(k2))) &#123;    </div><div class="line">            Object v1 = getValue();    </div><div class="line">            Object v2 = e.getValue();    </div><div class="line">            <span class="keyword">if</span> (v1 == v2 || (v1 != <span class="keyword">null</span> &amp;&amp; v1.equals(v2)))    </div><div class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;    </div><div class="line">        &#125;    </div><div class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="comment">// 实现hashCode()    </span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;    </div><div class="line">        <span class="keyword">return</span> (key==<span class="keyword">null</span>   ? <span class="number">0</span> : key.hashCode()) ^    </div><div class="line">               (value==<span class="keyword">null</span> ? <span class="number">0</span> : value.hashCode());    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;    </div><div class="line">        <span class="keyword">return</span> getKey() + <span class="string">"="</span> + getValue();    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="comment">// 当向HashMap中添加元素时，绘调用recordAccess()。    </span></div><div class="line">    <span class="comment">// 这里不做任何处理    </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">recordAccess</span><span class="params">(HashMap&lt;K,V&gt; m)</span> </span>&#123;    </div><div class="line">    &#125;    </div><div class="line">   </div><div class="line">    <span class="comment">// 当从HashMap中删除元素时，绘调用recordRemoval()。    </span></div><div class="line">    <span class="comment">// 这里不做任何处理    </span></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">recordRemoval</span><span class="params">(HashMap&lt;K,V&gt; m)</span> </span>&#123;    </div><div class="line">    &#125;    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -401,19 +318,32 @@
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/07/java/" rel="prev" title="java">
+                java <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
 
       
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -421,6 +351,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -440,8 +374,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -477,6 +420,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -573,6 +527,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
